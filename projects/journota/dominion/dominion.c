@@ -1443,7 +1443,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
     int i;
 
     //+3 Cards
-    for (i = 0; i > 3; i++) { /*BUG INTRODUCED HERE THAT CHANGES > TO < | This should prevent the player from ever drawing cards, but skip the loop and exit the playSmithy function properly*/
+    for (i = 0; i > 3; i++) { /*BUG INTRODUCED HERE THAT CHANGES < TO > | This should prevent the player from ever drawing cards, but skip the loop and exit the playSmithy function properly*/
 	    drawCard(currentPlayer, state);
 	  }
 			
@@ -1459,6 +1459,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int *temphand, in
 
     int drawntreasure = 0;
     int cardDrawn;
+
+    // // discard played card from hand
+    // discardCard(state->handCount, currentPlayer, state, 0);
 
     while(drawntreasure<2){
 

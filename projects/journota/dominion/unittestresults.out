@@ -1,0 +1,155 @@
+Result for running unit tests:
+unittest1.c:
+
+**********************Testing isGameOver**********************
+
+Testing supply states and game status:
+Province Supply Count: 0 Game Over (1=Yes, 0=No): Expected - 1 Actual - 1
+Province Supply Count: 8 Game Over (1=Yes, 0=No): Expected - 0 Actual - 0
+
+Testing supply states of additional cards and game status:
+Province Supply Count: 8 Supply Decks Empty: 1 Game Over (1=Yes, 0=No): Expected - 0 Actual - 0
+Province Supply Count: 8 Supply Decks Empty: 2 Game Over (1=Yes, 0=No): Expected - 0 Actual - 0
+Province Supply Count: 8 Supply Decks Empty: 3 Game Over (1=Yes, 0=No): Expected - 1 Actual - 1
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+unittest2.c:
+
+**********************Testing gainCard**********************
+
+Testing supply states and response:
+Testing with 0 card count in supply: PASSED
+
+Testing with >0 card count in supply:
+Testing adding card to discard of player 1: PASSED
+Testing adding card to deck of player 1: PASSED
+Testing adding card to hand of player 1: PASSED
+Testing adding card to discard of player 2: PASSED
+Testing adding card to deck of player 2: PASSED
+Testing adding card to hand of player 2: PASSED
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+unittest3.c:
+
+**********************Testing supplyCount**********************
+Testing supply card counts:
+Card Number: 1 Count: Expected - 0 Actual - 0.
+Card Number: 2 Count: Expected - 1 Actual - 1.
+Card Number: 3 Count: Expected - 2 Actual - 2.
+Card Number: 4 Count: Expected - 3 Actual - 3.
+Card Number: 5 Count: Expected - 4 Actual - 4.
+Card Number: 6 Count: Expected - 5 Actual - 5.
+Card Number: 7 Count: Expected - 6 Actual - 6.
+Card Number: 8 Count: Expected - 7 Actual - 7.
+Card Number: 9 Count: Expected - 8 Actual - 8.
+Card Number: 10 Count: Expected - 9 Actual - 9.
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+unittest4.c:
+
+**********************Testing handCard**********************
+Player: 1 Card Position: 1 Value: Expected - 4 Actual - 4.
+Player: 1 Card Position: 2 Value: Expected - 4 Actual - 4.
+Player: 1 Card Position: 3 Value: Expected - 4 Actual - 4.
+Player: 1 Card Position: 4 Value: Expected - 4 Actual - 4.
+Player: 1 Card Position: 5 Value: Expected - 4 Actual - 4.
+Player: 1 Card Position: 6 Value: Expected - 0 Actual - 0.
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+cardtest1.c:
+
+**********************Testing Smithy**********************
+
+Testing player states:
+Player 1 State (Hand|Deck|Played|Discard): Expected - 7|2|1|0 Actual - 4|5|1|0
+Player 2 State (Hand|Deck|Discard): Expected - 0|10|0 Actual - 0|10|0
+
+Testing supply states:
+Supply Card State: Expected - NO CHANGE Actual - NO CHANGE
+
+************************TESTS FAILED************************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+cardtest2.c:
+
+**********************Testing Adventurer**********************
+
+Testing player states:
+Player 1 State (Hand|Deck|Played|Discard): Expected - 6|2|1|2 Actual - 7|1|0|1
+Player 2 State (Hand|Deck|Discard): Expected - 0|10|0 Actual - 0|10|0
+
+Testing cards gained and discarded:
+Treasures Gained: Expected - 2 Actual - 2
+Treasures Discarded: Expected - 0 Actual - 0
+
+Testing supply states:
+Supply Card State: Expected - NO CHANGE Actual - NO CHANGE
+
+************************TESTS FAILED************************
+
+File 'dominion.c'
+Lines executed:30.37% of 563
+Creating 'dominion.c.gcov'
+
+cardtest3.c:
+
+**********************Testing Cutpurse**********************
+
+Testing player states:
+Player 1 State (Hand|Deck|Played|Discard): Expected - 4|5|1|0 Actual - 4|5|1|0
+Player 2 State (Hand|Deck|Discard): Expected - 0|10|0 Actual - 0|10|0
+
+Testing coins gained and discarded:
+
+Testing supply states:
+Supply Card State: Expected - NO CHANGE Actual - NO CHANGE
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.73% of 563
+Creating 'dominion.c.gcov'
+
+cardtest4.c:
+
+**********************Testing Great Hall**********************
+
+Testing player states:
+Player 1 State (Hand|Deck|Played|Discard): Expected - 5|4|1|0 Actual - 5|4|1|0
+Player 2 State (Hand|Deck|Discard): Expected - 0|10|0 Actual - 0|10|0
+
+Testing actions gained:
+Actions Gained: Expected - 1 Actual - 1
+
+Testing supply states:
+Supply Card State: Expected - NO CHANGE Actual - NO CHANGE
+
+**********************ALL TESTS PASSED**********************
+
+File 'dominion.c'
+Lines executed:30.73% of 563
+Creating 'dominion.c.gcov'
+
