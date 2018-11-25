@@ -34,10 +34,10 @@ public class UrlValidatorTest extends TestCase {
      UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 
      // set test param vars
-     String urlScheme = "http://"
-     String urlPort = ":80"
+     String urlScheme = "http://";
+     String urlPort = ":80";
      String urlPath = "/";
-     String urlQuery = "?action=view"
+     String urlQuery = "?action=view";
      
 
     // create result pairs for testUrlAuthority
@@ -62,18 +62,18 @@ public class UrlValidatorTest extends TestCase {
 
         // append elements
         test.append(urlScheme);
-        test.append(testUrlAuthority[i].item);
+        test.append(testUrlAuthority[index].item);
         test.append(urlPort);
         test.append(urlPath);
-        test.append(urlPath);
+        test.append(urlQuery);
 
         // convert to string
         String testUrl = test.toString();
 
         // check validity
         boolean res = urlVal.isValid(testUrl);
-        if(res == testUrlAuthority[i].valid){
-            System.out.print(testUrl + ": expected - " + testUrlAuthority[i].valid + " actual - " res);
+        if(res == testUrlAuthority[index].valid){
+            System.out.print(testUrl + ": expected - " + testUrlAuthority[index].valid + " actual - " + res);
         }
 
         // increment
