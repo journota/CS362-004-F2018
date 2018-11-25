@@ -35,7 +35,7 @@ public class UrlValidatorTest extends TestCase {
 
      // set test param vars
      String urlScheme = "http://";
-     String urlPort = ":80";
+//     String urlPort = ":80";
      String urlPath = "/";
      String urlQuery = "?action=view";
      
@@ -63,7 +63,7 @@ public class UrlValidatorTest extends TestCase {
         // append elements
         test.append(urlScheme);
         test.append(testUrlAuthority[index].item);
-        test.append(urlPort);
+//        test.append(urlPort);
         test.append(urlPath);
         test.append(urlQuery);
 
@@ -72,9 +72,7 @@ public class UrlValidatorTest extends TestCase {
 
         // check validity
         boolean res = urlVal.isValid(testUrl);
-        if(res == testUrlAuthority[index].valid){
-            System.out.print(testUrl + ": expected - " + testUrlAuthority[index].valid + " actual - " + res);
-        }
+        System.out.print(testUrl + ": expected - " + testUrlAuthority[index].valid + " actual - " + res + "\n");
 
         // increment
         index++;
