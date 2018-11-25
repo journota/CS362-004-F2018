@@ -35,7 +35,7 @@ public class UrlValidatorTest extends TestCase {
 
      // set test param vars
      String urlScheme = "http://";
-//     String urlPort = ":80";
+     String urlPort = ":80";
      String urlPath = "/";
      String urlQuery = "?action=view";
      
@@ -63,7 +63,7 @@ public class UrlValidatorTest extends TestCase {
         // append elements
         test.append(urlScheme);
         test.append(testUrlAuthority[index].item);
-//        test.append(urlPort);
+        test.append(urlPort);
         test.append(urlPath);
         test.append(urlQuery);
 
@@ -71,7 +71,7 @@ public class UrlValidatorTest extends TestCase {
         String testUrl = test.toString();
 
         // check validity
-        boolean res = urlVal.isValid(testUrl);
+        boolean res = urlVal.isValidScheme(testUrl);
         System.out.print(testUrl + ": expected - " + testUrlAuthority[index].valid + " actual - " + res + "\n");
 
         // increment
@@ -83,7 +83,55 @@ public class UrlValidatorTest extends TestCase {
    }
    
    public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
+		 //You can use this function to implement your Second Partition testing	  
+	   
+	     // set scheme
+	     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+	     // set test param vars
+	     String urlAuthority = "www.google.com";
+	     String urlPort = ":80";
+	     String urlPath = "/";
+	     String urlQuery = "?action=view";
+	     
+
+	    // create result pairs for testUrlAuthority
+	     ResultPair[] testUrlScheme = {new ResultPair ("http://", true),
+	                                    new ResultPair ("h3t://", true),
+	                                    new ResultPair ("ftp://", true),
+	                                    new ResultPair ("http//", false),
+	                                    new ResultPair ("http:", false),
+	                                    new ResultPair ("http:/", false),
+	                                    new ResultPair (":http://", false),
+	                                    new ResultPair ("htt://", false),
+	                                    new ResultPair ("://", false),
+	                                    new ResultPair ("", false) };
+
+	    // set index
+	    int index = 0;
+
+	    // enter while loop
+	    while(index < testUrlScheme.length){
+	        // set build string
+	        StringBuilder test = new StringBuilder();
+
+	        // append elements
+	        test.append(testUrlScheme[index].item);
+	        test.append(urlAuthority);
+	        test.append(urlPort);
+	        test.append(urlPath);
+	        test.append(urlQuery);
+
+	        // convert to string
+	        String testUrl = test.toString();
+
+	        // check validity
+	        boolean res = urlVal.isValidScheme(testUrl);
+	        System.out.print(testUrl + ": expected - " + testUrlScheme[index].valid + " actual - " + res + "\n");
+
+	        // increment
+	        index++;
+	    }
 
    }
    //You need to create more test cases for your Partitions if you need to 
