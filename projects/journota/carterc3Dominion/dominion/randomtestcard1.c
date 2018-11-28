@@ -2,7 +2,7 @@
 ** Program name: Assignment 4, Random Testing
 ** Author: Aaron Journot
 ** Date: 11/14/18
-** Description: Random test 1 for dominion.c tests great hall implementation
+** Description: Random test 1 for dominion.c tests cutpurse implementation
 *********************************************************************/
 
 #include "dominion.h"
@@ -16,7 +16,7 @@
 #include <string.h>
 
 #define TEST_PRINT 0
-#define CARD_NAME "Great Hall"
+#define CARD_NAME "Cutpurse"
 #define TEST_COUNT 50
 #define CARD_LIMIT 50
 #define HAND_LIMIT 5
@@ -30,16 +30,16 @@ int main (){
     int supply[17];
     int tSupply[17];
     int bonus = 0;
-    int cardDelta = 1;
+    int cardDelta = 2;
     int discard = 1;
     int p = 0;
     int handPos = 0;
     int failCtr = 0;
 
-    // randomization of kingdom cards does not matter as they do not affect the outcome of the affects of great hall
+    // randomization of kingdom cards does not matter as they do not affect the outcome of the affects of cutpurse
     int kCards[10] = {feast, adventurer, cutpurse, minion, smithy, tribute, sea_hag, great_hall, baron};
 
-    // randomization of choice does not matter as these do not affect great hall
+    // randomization of choice does not matter as these do not affect cutpurse
     int choice1 = 0;
     int choice2 = 0;
     int choice3 = 0;
@@ -62,7 +62,8 @@ int main (){
         // initialize variables with static or indetermined values
         int failFlag = 0;
         unsigned int i, j, k, m, n;
-        int actionDelta = 1;
+        int coinDelta = 2;
+        int treasureDiscard = 0;
 
         // determine victory cards
         // int victoryCards;
@@ -87,7 +88,11 @@ int main (){
 
             // set hand
             for (n = 0; n < game.handCount[m]; n++){
-                int tempCard = rand() % 17;
+                // added after revisions during assignment 5
+                int tempCard = 0;
+                do {
+                    tempCard = rand() % 17;
+                } while ((m == (players - 1)) && tempCard == copper);
                 // if 0th position card, set cutpurse, if 0-7, set from base cards,
                 // otherwise set from in-game kingdom cards
                 if (n == 0){
@@ -126,7 +131,7 @@ int main (){
         memcpy(&test, &game, sizeof(struct gameState));
 
         // play card
-        cardEffect(great_hall, choice1, choice2, choice3, &test, handPos, &bonus);
+        cardEffect(cutpurse, choice1, choice2, choice3, &test, handPos, &bonus);
 
         // test number of cards gained, number of cards drawn from deck, and state of other players
         if(TEST_PRINT){
@@ -149,9 +154,15 @@ int main (){
                 if(game.discardCount[i] != test.discardCount[i]){ failFlag = 1; }
             }
             else{
+                // check original gamestate to determine if coppers were present
+                for(m = 0; m < game.handCount[i]; m++){
+                    if(game.hand[i][m] == copper){
+                        treasureDiscard = 1;
+                    }
+                }
                 if(TEST_PRINT){
                     printf("Player %d State (Hand|Deck|Discard): Expected - %d|%d|%d Actual - %d|%d|%d\n",
-                    (i + 1), game.handCount[i], game.deckCount[i], game.discardCount[i],
+                    (i + 1), (game.handCount[i] - treasureDiscard), game.deckCount[i], (game.discardCount[i] + treasureDiscard),
                     test.handCount[i], test.deckCount[i], test.discardCount[i]);
                 }
                 if(game.handCount[i] != test.handCount[i]){ failFlag = 1; }
@@ -162,14 +173,15 @@ int main (){
 
         // test that cards gained were treasure and that discarded cards were not
         if(TEST_PRINT){
-            printf("\nTesting actions gained:\n");
+            printf("\nTesting coins gained and discarded:\n");
         }
-        // assert(actionDelta == (test.numActions - game.numActions));
-        if(actionDelta != (test.numActions - game.numActions)){ failFlag = 1; }
+        // assert(coinDelta == (test.coins - game.coins));
+        if(coinDelta != (test.coins - game.coins)){ failFlag = 1; }
+
         if(TEST_PRINT){
-            printf("Actions Gained: Expected - %d Actual - %d\n", actionDelta, test.numActions - game.numActions);
+        printf("Coins Gained: Expected - %d Actual - %d\n", coinDelta, (test.coins - game.coins));
         }
-        
+
         // test state of supply decks
         if(TEST_PRINT){
             printf("\nTesting supply states:\n");
@@ -198,6 +210,7 @@ int main (){
         }
         // assert(memcmp(supply, tSupply, sizeof(supply)) == 0);
         if(memcmp(supply, tSupply, sizeof(supply)) != 0){ failFlag = 1; }
+
 
         // test results
         if(failFlag){
