@@ -72,6 +72,7 @@ public class UrlValidatorTest extends TestCase {
 
         // check validity
         boolean res = urlVal.isValidScheme(testUrl);
+//        assertEquals(testUrlAuthority[index].valid,res);
         System.out.print(testUrl + ": expected - " + testUrlAuthority[index].valid + " actual - " + res + "\n");
 
         // increment
@@ -127,6 +128,7 @@ public class UrlValidatorTest extends TestCase {
 
 	        // check validity
 	        boolean res = urlVal.isValidScheme(testUrl);
+//	        assertEquals(testUrlScheme[index].valid,res);
 	        System.out.print(testUrl + ": expected - " + testUrlScheme[index].valid + " actual - " + res + "\n");
 
 	        // increment
